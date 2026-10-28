@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.12, pytest-9.2.0, pluggy-1.7.0 -- /Users/feiyang/.codex/.chatgpt-projects/g-p-6a8bc3896c108191b1914e9af9ac0262/co-do-round3/track-d/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/feiyang/.codex/.chatgpt-projects/g-p-6a8bc3896c108191b1914e9af9ac0262/co-do-round5/track-d/boltons
+configfile: pyproject.toml
+collecting ... collected 25 items / 13 deselected / 12 selected
+
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--recv] PASSED [  8%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--recv_size] PASSED [ 16%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--peek] PASSED [ 25%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv] PASSED [ 33%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv_size] PASSED [ 41%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-peek] PASSED [ 50%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv] PASSED [ 58%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv_size] PASSED [ 66%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--peek] PASSED [ 75%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-recv] PASSED [ 83%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-recv_size] PASSED [ 91%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-peek] PASSED [100%]
+
+====================== 12 passed, 13 deselected in 0.04s =======================

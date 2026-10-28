@@ -1,0 +1,259 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.12, pytest-9.2.0, pluggy-1.7.0 -- /Users/feiyang/.codex/.chatgpt-projects/g-p-6a8bc3896c108191b1914e9af9ac0262/co-do-round3/track-d/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/feiyang/.codex/.chatgpt-projects/g-p-6a8bc3896c108191b1914e9af9ac0262/co-do-round5/track-d/boltons
+configfile: pyproject.toml
+collecting ... collected 25 items / 13 deselected / 12 selected
+
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--recv] FAILED [  8%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--recv_size] FAILED [ 16%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--peek] FAILED [ 25%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv] FAILED [ 33%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv_size] FAILED [ 41%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-peek] FAILED [ 50%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv] FAILED [ 58%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv_size] FAILED [ 66%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--peek] FAILED [ 75%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-recv] PASSED [ 83%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-recv_size] FAILED [ 91%]
+tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-peek] PASSED [100%]
+
+=================================== FAILURES ===================================
+______ test_invalid_read_size_preserves_live_socket[-1-ValueError--recv] _______
+
+method = 'recv', buffer = b'', size = -1, error = <class 'ValueError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+>           with pytest.raises(error):
+E           Failed: DID NOT RAISE ValueError
+
+tests/test_socketutils.py:465: Failed
+____ test_invalid_read_size_preserves_live_socket[-1-ValueError--recv_size] ____
+
+method = 'recv_size', buffer = b'', size = -1, error = <class 'ValueError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+>           with pytest.raises(error):
+E           Failed: DID NOT RAISE ValueError
+
+tests/test_socketutils.py:465: Failed
+______ test_invalid_read_size_preserves_live_socket[-1-ValueError--peek] _______
+
+method = 'peek', buffer = b'', size = -1, error = <class 'ValueError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+>           with pytest.raises(error):
+E           Failed: DID NOT RAISE ValueError
+
+tests/test_socketutils.py:465: Failed
+__ test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv] ___
+
+method = 'recv', buffer = b'buffered', size = -1, error = <class 'ValueError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+>           with pytest.raises(error):
+E           Failed: DID NOT RAISE ValueError
+
+tests/test_socketutils.py:465: Failed
+_ test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv_size] _
+
+method = 'recv_size', buffer = b'buffered', size = -1
+error = <class 'ValueError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+>           with pytest.raises(error):
+E           Failed: DID NOT RAISE ValueError
+
+tests/test_socketutils.py:465: Failed
+__ test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-peek] ___
+
+method = 'peek', buffer = b'buffered', size = -1, error = <class 'ValueError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+>           with pytest.raises(error):
+E           Failed: DID NOT RAISE ValueError
+
+tests/test_socketutils.py:465: Failed
+______ test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv] _______
+
+method = 'recv', buffer = b'', size = 1.5, error = <class 'TypeError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+            with pytest.raises(error):
+                getattr(stream, method)(size)
+    
+            assert stream.getrecvbuffer() == buffer
+>           assert left.gettimeout() == 0.25
+E           assert 1.0 == 0.25
+E            +  where 1.0 = <built-in method gettimeout of socket object at 0x10264e3e0>()
+E            +    where <built-in method gettimeout of socket object at 0x10264e3e0> = <socket.socket fd=11, family=1, type=1, proto=0>.gettimeout
+
+tests/test_socketutils.py:469: AssertionError
+____ test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv_size] ____
+
+method = 'recv_size', buffer = b'', size = 1.5, error = <class 'TypeError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+            with pytest.raises(error):
+                getattr(stream, method)(size)
+    
+            assert stream.getrecvbuffer() == buffer
+>           assert left.gettimeout() == 0.25
+E           assert 1.0 == 0.25
+E            +  where 1.0 = <built-in method gettimeout of socket object at 0x10264db40>()
+E            +    where <built-in method gettimeout of socket object at 0x10264db40> = <socket.socket fd=11, family=1, type=1, proto=0>.gettimeout
+
+tests/test_socketutils.py:469: AssertionError
+______ test_invalid_read_size_preserves_live_socket[1.5-TypeError--peek] _______
+
+method = 'peek', buffer = b'', size = 1.5, error = <class 'TypeError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+            with pytest.raises(error):
+                getattr(stream, method)(size)
+    
+            assert stream.getrecvbuffer() == buffer
+>           assert left.gettimeout() == 0.25
+E           assert 1.0 == 0.25
+E            +  where 1.0 = <built-in method gettimeout of socket object at 0x1025ec4c0>()
+E            +    where <built-in method gettimeout of socket object at 0x1025ec4c0> = <socket.socket fd=11, family=1, type=1, proto=0>.gettimeout
+
+tests/test_socketutils.py:469: AssertionError
+_ test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-recv_size] _
+
+method = 'recv_size', buffer = b'buffered', size = 1.5
+error = <class 'TypeError'>
+
+    @pytest.mark.parametrize('method', ['recv', 'recv_size', 'peek'])
+    @pytest.mark.parametrize('buffer', [b'', b'buffered'])
+    @pytest.mark.parametrize('size,error', [(-1, ValueError), (1.5, TypeError)])
+    def test_invalid_read_size_preserves_live_socket(method, buffer, size, error):
+        """Invalid lengths must not consume bytes from either buffering layer."""
+        left, right = socket.socketpair()
+        with left, right:
+            left.settimeout(0.25)
+            stream = BufferedSocket(left, timeout=1)
+            stream.rbuf = buffer
+            right.sendall(b'queued')
+    
+            with pytest.raises(error):
+                getattr(stream, method)(size)
+    
+            assert stream.getrecvbuffer() == buffer
+>           assert left.gettimeout() == 0.25
+E           assert 1.0 == 0.25
+E            +  where 1.0 = <built-in method gettimeout of socket object at 0x1025efee0>()
+E            +    where <built-in method gettimeout of socket object at 0x1025efee0> = <socket.socket fd=11, family=1, type=1, proto=0>.gettimeout
+
+tests/test_socketutils.py:469: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--recv]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--recv_size]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError--peek]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-recv_size]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[-1-ValueError-buffered-peek]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--recv_size]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError--peek]
+FAILED tests/test_socketutils.py::test_invalid_read_size_preserves_live_socket[1.5-TypeError-buffered-recv_size]
+================= 10 failed, 2 passed, 13 deselected in 0.07s ==================

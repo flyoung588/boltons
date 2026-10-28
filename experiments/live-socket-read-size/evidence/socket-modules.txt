@@ -1,0 +1,50 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.12, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/feiyang/.codex/.chatgpt-projects/g-p-6a8bc3896c108191b1914e9af9ac0262/co-do-round5/track-d/boltons
+configfile: pyproject.toml
+collected 43 items
+
+tests/test_socketutils.py ..........FF.............                      [ 58%]
+tests/test_socketutils_read_size.py ..................                   [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_socketutils_netstring __________________________
+
+    def test_socketutils_netstring():
+        """A holistic feature test of BufferedSocket via the NetstringSocket
+        wrapper. Runs
+        """
+        print("running self tests")
+    
+        # Set up server
+        server_socket = socket.socket()
+>       server_socket.bind(('127.0.0.1', 0))  # localhost with ephemeral port
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 1] Operation not permitted
+
+tests/test_socketutils.py:291: PermissionError
+----------------------------- Captured stdout call -----------------------------
+running self tests
+______________________ test_socketutils_netstring_timeout ______________________
+
+    def test_socketutils_netstring_timeout():
+        """Tests that server socket timeout is overridden by the argument to read call.
+    
+        Server has timeout of 10 ms, and we will sleep for 20 ms. If timeout is not overridden correctly,
+        a timeout exception will be raised."""
+    
+        print("running timeout test")
+    
+        # Set up server
+        server_socket = socket.socket()
+>       server_socket.bind(('127.0.0.1', 0))  # localhost with ephemeral port
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       PermissionError: [Errno 1] Operation not permitted
+
+tests/test_socketutils.py:418: PermissionError
+----------------------------- Captured stdout call -----------------------------
+running timeout test
+=========================== short test summary info ============================
+FAILED tests/test_socketutils.py::test_socketutils_netstring - PermissionErro...
+FAILED tests/test_socketutils.py::test_socketutils_netstring_timeout - Permis...
+========================= 2 failed, 41 passed in 0.15s =========================
